@@ -1,0 +1,35 @@
+.overflow h1 {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+.overflow a {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+.hold .overflow h1 {
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+}
+
+
+
+/* ---------------------------
+ --> RESPONSIVE
+--------------------------- */
+@media only screen and (min-width : 1680px) {
+    .overflow a {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+@media only screen and (max-width : 1180px) {
+    .overflow a {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+
+
+
+

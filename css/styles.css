@@ -1,0 +1,330 @@
+/* ---------------------------
+ --> INIT
+--------------------------- */
+body,
+html {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: #080530;
+    color: #FFF;
+}
+img {
+    display: block;
+}
+a,
+input {
+    outline: none;
+    border: 0;
+}
+p, h1, h2, h3, img, input {
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+p, h1, h2, h3 {
+    width: 100%;
+}
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ---------------------------
+ --> ASSETS
+--------------------------- */
+.assets,
+.stars,
+.stars .star,
+.clouds,
+.texts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.stars .star img,
+.cloud img,
+.moon img {
+    width: 100%;
+    height: auto;
+}
+.stars .star.one {
+    opacity: 0.15;
+}
+.stars .star.two {
+    opacity: 0.1;
+}
+.stars .star.three {
+    opacity: 0.35;
+}
+.stars .star.four {
+    opacity: 0.15;
+}
+.cloud {
+    position: absolute;
+}
+.cloud.one {
+    top: 200px;
+    left: -100px;
+    width: 300px;
+}
+.cloud.two {
+    width: 200px;
+    top: 250px;
+    left: 60%;
+}
+.cloud.three {
+    width: 300px;
+    top: 300px;
+    left: 75%;
+}
+.moon {
+    position: absolute;
+    top: 150px;
+    left: 8%;
+    width: 140px;
+    height: 140px;
+}
+.ship,
+.floor,
+.rocket,
+.smoke,
+.fire {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.ship img,
+.rocket img,
+.floor img,
+.smoke img,
+.fire img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+.ship {
+    animation: seamove 8s ease-out infinite;
+    transform-origin: bottom center;
+}
+
+@keyframes seamove {
+  0%   { -webkit-transform: rotate(0) translateY(0); }
+  25%   { -webkit-transform: rotate(1deg) translateY(8px); }
+  75% { -webkit-transform: rotate(-1deg) translateY(5px); }
+  100% { -webkit-transform: rotate(0); }
+}
+
+
+
+.smoke .circle {
+    opacity: 0.1;
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: #FFF;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.smoke .circle.one {
+    top: 62%;
+    right: 17%;
+}
+.smoke .circle.two {
+    top: 66%;
+    right: 13%;
+}
+.smoke .circle.three {
+    top: 68%;
+    right: 21%;
+}
+
+
+.fire {
+    opacity: 0;
+}
+
+
+
+.overflow {
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 70px;
+    margin: -160px 0 0 0;
+}
+.overflow.two {
+    margin: -90px 0 0 0;
+}
+.overflow.three {
+    height: 50px;
+    margin: 40px 0 0 0;
+}
+.hold .overflow {
+    height: 50px;
+    margin: -25px 0 0 0;
+}
+.overflow h1 {
+    position: absolute;
+    font: normal 900 48px/70px 'Nunito Sans', sans-serif;
+    text-align: center;
+    color: #FFF;
+    -webkit-transform: translateY(70px);
+    transform: translateY(70px);
+}
+.texts-nsc .overflow h1 {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+.hold .overflow h1 {
+    font: normal 600 36px/50px 'Nunito Sans', sans-serif;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+.hold .overflow h1 span {
+    font-weight: 900;
+    color: #4CDFA9;
+    border-bottom: 1px solid #4CDFA9;
+}
+.overflow a {
+    display: block;
+    position: relative;
+    width: 140px;
+    height: 50px;
+    border-radius: 25px;
+    background: #1B8D98;
+    margin: 0 auto;
+    font: normal 400 16px/50px 'Nunito Sans', sans-serif;
+    text-align: center;
+    color: #FFF;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px);
+    -webkit-transition: background 0.4s;
+    -moz-transition: background 0.4s;
+    -o-transition: background 0.4s;
+    transition: background 0.4s;
+}
+.overflow a:hover {
+    background: #4CDFA9;
+}
+
+.engine-status {
+    position: absolute;
+    bottom: 50%;
+    right: 12%;
+    width: 60px;
+    height: 60px;
+}
+.engine-status .txt {
+    position: absolute;
+    top: -60px;
+    left: -10px;
+    width: 80px;
+}
+.engine-status .txt .cache {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    height: 18px;
+    font: normal 400 12px/18px 'Nunito Sans', sans-serif;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+.engine-status .txt .cache p {
+    position: absolute;
+    left: 0;
+    -webkit-transform: translateY(18px);
+    transform: translateY(18px);
+}
+
+
+
+
+
+
+
+
+
+/* ---------------------------
+ --> RESPONSIVE
+--------------------------- */
+@media only screen and (min-width : 1680px) {
+    .overflow h1 {
+        font-size: 54px;
+    }
+    .hold .overflow {
+        height: 70px;
+        margin: -35px 0 0 0;
+    }
+    .hold .overflow h1 {
+        font: normal 600 48px/70px 'Nunito Sans', sans-serif;
+    }
+    .overflow a {
+        height: 56px;
+        border-radius: 28px;
+        font: normal 400 18px/56px 'Nunito Sans', sans-serif;
+        -webkit-transform: translateY(60px);
+        transform: translateY(60px);
+    }
+    .overflow.three {
+        height: 56px;
+    }
+    .engine-status .txt {
+        left: -15px;
+        width: 90px;
+    }
+    .engine-status .txt .cache {
+        height: 20px;
+        font: normal 400 14px/20px 'Nunito Sans', sans-serif;
+    }
+}
+@media only screen and (max-width : 1180px) {
+    .overflow {
+        height: 60px;
+        margin: -125px 0 0 0;
+    }
+    .overflow h1 {
+        font: normal 900 40px/60px 'Nunito Sans', sans-serif;
+    }
+    .overflow.two {
+        margin: -70px 0 0 0;
+    }
+    .overflow.three {
+        height: 44px;
+    }
+    .overflow a {
+        width: 120px;
+        height: 44px;
+        border-radius: 22px;
+        font: normal 400 15px/44px 'Nunito Sans', sans-serif;
+        -webkit-transform: translateY(44px);
+        transform: translateY(44px);
+    }
+    .hold .overflow h1 {
+        font: normal 600 32px/50px 'Nunito Sans', sans-serif;
+    }
+}
+
+
+
+
+
