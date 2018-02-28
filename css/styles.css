@@ -44,7 +44,8 @@ svg {
 .stars,
 .stars .star,
 .clouds,
-.texts {
+.texts,
+.fallback {
     position: absolute;
     top: 0;
     left: 0;
@@ -98,7 +99,9 @@ svg {
 .floor,
 .rocket,
 .smoke,
-.fire {
+.fire,
+.hold,
+.skip {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -167,18 +170,26 @@ svg {
     left: 10%;
     width: 80%;
     height: 70px;
-    margin: -160px 0 0 0;
+    margin: -180px 0 0 0;
 }
 .overflow.two {
-    margin: -90px 0 0 0;
+    margin-top: -125px;
+}
+.overflow.para {
+    height: 60px;
+    margin-top: -40px;
 }
 .overflow.three {
     height: 50px;
-    margin: 40px 0 0 0;
+    margin: 80px 0 0 0;
 }
 .hold .overflow {
     height: 50px;
     margin: -25px 0 0 0;
+}
+.skip .overflow {
+    height: 30px;
+    margin: 80px 0 0 0;
 }
 .overflow h1 {
     position: absolute;
@@ -201,6 +212,25 @@ svg {
     font-weight: 900;
     color: #4CDFA9;
     border-bottom: 1px solid #4CDFA9;
+}
+.overflow h2 {
+    position: absolute;
+    font: normal 600 21px/30px 'Nunito Sans', sans-serif;
+    text-align: center;
+    color: rgba(255,255,255, 0.5);
+    -webkit-transform: translateY(60px);
+    transform: translateY(60px);
+}
+.overflow p {
+    position: absolute;
+    font: normal 600 14px/30px 'Nunito Sans', sans-serif;
+    text-align: center;
+    text-decoration: underline;
+    letter-spacing: 0.5px;
+    color: #5D5688;
+    cursor: pointer;
+    /* -webkit-transform: translateY(30px);
+    transform: translateY(30px); */
 }
 .overflow a {
     display: block;
@@ -258,6 +288,27 @@ svg {
 
 
 
+/* ---------------------------
+ --> FALLBACK
+--------------------------- */
+.fallback {
+    display: none;
+    background: #2A2355;
+    z-index: 10;
+}
+.fallback p {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    width: 60%;
+    font: normal 600 18px/30px 'Nunito Sans', sans-serif;
+    text-align: center;
+    color: #4CDFA9;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
 
 
 
@@ -278,12 +329,24 @@ svg {
     .hold .overflow h1 {
         font: normal 600 48px/70px 'Nunito Sans', sans-serif;
     }
+    .overflow.one {
+        margin-top: -210px;
+    }
+    .overflow.two {
+        margin-top: -145px;
+    }
+    .overflow.para {
+        margin-top: -50px;
+    }
     .overflow a {
         height: 56px;
         border-radius: 28px;
         font: normal 400 18px/56px 'Nunito Sans', sans-serif;
         -webkit-transform: translateY(60px);
         transform: translateY(60px);
+    }
+    .overflow p {
+        font-size: 16px;
     }
     .overflow.three {
         height: 56px;
@@ -305,8 +368,14 @@ svg {
     .overflow h1 {
         font: normal 900 40px/60px 'Nunito Sans', sans-serif;
     }
+    .overflow.one {
+        margin-top: -140px;
+    }
     .overflow.two {
-        margin: -70px 0 0 0;
+        margin-top: -90px;
+    }
+    .overflow.para {
+        margin-top: -20px;
     }
     .overflow.three {
         height: 44px;
@@ -321,6 +390,11 @@ svg {
     }
     .hold .overflow h1 {
         font: normal 600 32px/50px 'Nunito Sans', sans-serif;
+    }
+}
+@media only screen and (max-width : 1024px) {
+    .fallback {
+        display: block;
     }
 }
 

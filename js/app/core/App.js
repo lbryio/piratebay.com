@@ -15,19 +15,24 @@ App.prototype.onLoad = function() {
 	this.smoke = Array.prototype.slice.call(document.getElementsByClassName('smoke')[0].children,0);
 	this.hold = document.getElementsByClassName('hold')[0].getElementsByTagName('h1')[0];
 	this.h1 = Array.prototype.slice.call(document.getElementsByClassName('texts')[0].getElementsByTagName('h1'),0);
+	this.h2 = document.getElementsByClassName('texts')[0].getElementsByTagName('h2')[0];
 	this.download = document.getElementsByClassName('texts')[0].getElementsByTagName('a')[0];
 	this.p = Array.prototype.slice.call(document.getElementsByClassName('engine-status')[0].getElementsByTagName('p'),0);
+	this.skip = document.getElementsByClassName('skip')[0].getElementsByTagName('p')[0];
 	this.path = this.draw();
 
 	this.timelines = [];
+	this.skipped = false;
 	this.completed = false;
-	this.duration = 3;
+	this.duration = 2.5;
 
 	this.createFirstTimeline();
 	this.pressedTime = null;
 	this.currentTime = null;
 
 	this.createSecondTime();
+
+	this.createSkipTime();
 
 	this.bindEvents();
 };
@@ -53,7 +58,8 @@ App.prototype.draw = function() {
 
 App.prototype.createFirstTimeline = function() {
 	this.timelines.push(new TimelineMax({paused:true}));
-	this.timelines[0].to(this.hold,0.8,{y:this.hold.offsetHeight,ease:Quint.easeOut});
+	this.timelines[0].to(this.hold,0.8,{y:this.hold.offsetHeight,ease:Quint.easeOut},0);
+	this.timelines[0].to(this.skip,0.8,{y:this.skip.offsetHeight,ease:Quint.easeOut},0);
 	this.timelines[0].staggerTo(this.p,0.8,{y:0,ease:Quint.easeOut},0.15,0);
 	this.timelines[0].to(this.path[0],0.8,{drawSVG:'100%',ease:Quint.easeOut},0);
 	this.timelines[0].to(this.rocket,2.4,{y:-40,ease:Quint.easeOut},0);
@@ -64,19 +70,47 @@ App.prototype.createFirstTimeline = function() {
 
 App.prototype.createSecondTime = function() {
 	this.timelines.push(new TimelineMax({paused:true}));
+	this.timelines[1].set(this.skip.parentNode.parentNode,{display:'none'},0);
+	this.timelines[1].set(this.hold.parentNode.parentNode,{display:'none'},0);
 	this.timelines[1].staggerTo(this.p.reverse(),0.8,{y:this.p[0].offsetHeight,ease:Quint.easeOut},0.15,0);
 	this.timelines[1].to(this.path,1.2,{drawSVG:0,stroke:'#fff',ease:Quint.easeOut},0);
 	this.timelines[1].to(this.rocket,8,{y:-window.innerHeight,ease:Quint.easeOut},0);
 	this.timelines[1].to(this.fire,8,{y:-window.innerHeight,ease:Quint.easeOut},0);
 	this.timelines[1].to(this.smoke,2,{scale:2,autoAlpha:0,ease:Quint.easeOut},0);
 	this.timelines[1].staggerTo(this.h1,0.8,{y:0,ease:Quint.easeOut},0.15,0.8);
-	this.timelines[1].to(this.download,0.8,{y:0,ease:Quint.easeOut},1.2);
+	this.timelines[1].to(this.h2,0.8,{y:0,ease:Quint.easeOut},1.1);
+	this.timelines[1].to(this.download,0.8,{y:0,ease:Quint.easeOut},1.3);
+};
+
+App.prototype.createSkipTime = function() {
+	this.timelines.push(new TimelineMax({paused:true}));
+	this.timelines[2].to(this.skip,0.4,{y:this.skip.offsetHeight,ease:Quint.easeIn,onComplete:function(){
+		TweenMax.set(this.skip.parentNode.parentNode,{display:'none'});
+	},onCompleteScope:this},0);
+	this.timelines[2].to(this.hold,0.6,{y:this.hold.offsetHeight,ease:Quint.easeIn,onComplete:function(){
+		TweenMax.set(this.hold.parentNode.parentNode,{display:'none'});
+	},onCompleteScope:this},0.05);
+	this.timelines[2].to(this.rocket,8,{y:-window.innerHeight,ease:Quint.easeOut},0);
+	this.timelines[2].to(this.fire,0.8,{autoAlpha:1,ease:Quint.easeOut},0);
+	this.timelines[2].to(this.fire,8,{y:-window.innerHeight,ease:Quint.easeOut},0);
+	this.timelines[2].to(this.smoke,2,{scale:2,autoAlpha:0,ease:Quint.easeOut},0);
+	this.timelines[2].staggerTo(this.h1,0.8,{y:0,ease:Quint.easeOut},0.15,0.8);
+	this.timelines[2].to(this.h2,0.8,{y:0,ease:Quint.easeOut},1.1);
+	this.timelines[2].to(this.download,0.8,{y:0,ease:Quint.easeOut},1.3);
 };
 
 App.prototype.bindEvents = function() {
+	var click = 'ontouchstart' in document ? 'touchstart':'click';
+	this.elem.addEventListener(click,this.onClick.bind(this),false);
 	this.elem.addEventListener('keydown',this.onKeyDown.bind(this),false);
 	this.elem.addEventListener('keyup',this.onKeyUp.bind(this),false);
 	TweenMax.ticker.addEventListener('tick',this.onTick.bind(this),false);
+};
+
+App.prototype.onClick = function(e) {
+	this.skipped = true;
+	this.completed = true;
+	this.timelines[2].play();
 };
 
 App.prototype.onKeyDown = function(e) {
@@ -96,9 +130,15 @@ App.prototype.onKeyUp = function() {
 
 App.prototype.onTick = function() {
 
+	if (this.skipped) {
+		return;
+	}
+
 	if (this.currentTime === null && !this.completed) {
-		this.timelines[0].timeScale(4);
-		this.timelines[0].reverse();
+		if (this.timelines[0].progress() !== 0) {
+			this.timelines[0].timeScale(4);
+			this.timelines[0].reverse();
+		}
 		return;
 	}
 
