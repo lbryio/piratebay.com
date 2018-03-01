@@ -44,8 +44,7 @@ svg {
 .stars,
 .stars .star,
 .clouds,
-.texts,
-.fallback {
+.texts {
     position: absolute;
     top: 0;
     left: 0;
@@ -101,7 +100,8 @@ svg {
 .smoke,
 .fire,
 .hold,
-.skip {
+.skip,
+.fallback {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -293,19 +293,49 @@ svg {
 --------------------------- */
 .fallback {
     display: none;
-    background: #2A2355;
     z-index: 10;
 }
-.fallback p {
+.fallback .inner {
     position: absolute;
     top: 50%;
-    left: 20%;
-    width: 60%;
-    font: normal 600 18px/30px 'Nunito Sans', sans-serif;
-    text-align: center;
-    color: #4CDFA9;
+    width: 100%;
+    padding: 80px 40px;
+    box-sizing: border-box;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+.fallback h1, 
+.fallback p,
+.fallback .button {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+.fallback h1 {
+    font: normal 900 30px/1.2 'Nunito Sans', sans-serif;
+    color: #FFF;
+}
+.fallback p {
+    font: normal 600 18px/1.5 'Nunito Sans', sans-serif;
+    color: rgba(255,255,255,0.5);
+    margin: 20px 0 40px 0;
+}
+.fallback a {
+    display: block;
+    width: 140px;
+    height: 50px;
+    border-radius: 25px;
+    background: #1B8D98;
+    margin: 0 auto;
+    font: normal 400 16px/50px 'Nunito Sans', sans-serif;
+    text-align: center;
+    color: #FFF;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+.fallback a:hover,
+.fallback a:active {
+    background: #4CDFA9;
 }
 
 
@@ -393,6 +423,9 @@ svg {
     }
 }
 @media only screen and (max-width : 1024px) {
+    .assets {
+        display: none;
+    }
     .fallback {
         display: block;
     }
