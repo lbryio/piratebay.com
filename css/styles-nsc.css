@@ -1,4 +1,7 @@
-.overflow h1,
+.overflow h1 {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
 .overflow h2 {
     -webkit-transform: translateY(0);
     transform: translateY(0);
