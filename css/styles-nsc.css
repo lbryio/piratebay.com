@@ -1,4 +1,5 @@
-.overflow h1 {
+.overflow h1,
+.overflow h2 {
     -webkit-transform: translateY(0);
     transform: translateY(0);
 }
@@ -9,6 +10,9 @@
 .hold .overflow h1 {
     -webkit-transform: translateY(50px);
     transform: translateY(50px);
+}
+.overflow p {
+    display: none;
 }
 
 
