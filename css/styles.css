@@ -285,7 +285,17 @@ svg {
     -webkit-transform: translateY(18px);
     transform: translateY(18px);
 }
-
+.disclamer {
+    position: fixed;
+    left: 0;
+    bottom: 25px;
+    width: 100%;
+    text-align: center;
+}
+.disclamer .inner{
+    font: normal 600 14px/30px 'Nunito Sans', sans-serif;
+    color: #5D5688;
+}
 
 
 /* ---------------------------
